@@ -1,5 +1,4 @@
 // frontend/src/App.jsx
-// Entry point for the frontend
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/NavBar';
@@ -22,7 +21,7 @@ const App = () => {
       <Routes>
         {/* Start New Game */}
         <Route path="/start-new-game" element={<StartNewGame createNewGame={createNewGame} />} />
-
+        
         {/* Load Game */}
         <Route path="/load-game" element={<LoadGame setPlayer={setPlayer} />} />
 

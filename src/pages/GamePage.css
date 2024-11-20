@@ -1,15 +1,14 @@
 /* frontend/src/pages/GamePage.css */
 
-
 .game-container {
     position: relative;
     width: 90%;
     height: 80vh;
-    background-image: url('/assets/images/catcafebackground2.png');
+    background-image: url("/assets/images/catcafebackground2.png");
     background-size: cover;
     background-position: center;
     color: #fff;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -26,6 +25,7 @@
     background-color: rgba(0, 0, 0, 0.6);
     padding: 5px 10px;
     border-radius: 5px;
+    z-index: 3;
   }
   
   .story-box {
@@ -36,6 +36,8 @@
     color: white;
     text-align: center;
     margin: 20px auto;
+    position: relative;
+    z-index: 2; 
   }
   
   #gameCanvas {
@@ -67,18 +69,17 @@
     flex-wrap: wrap;
   }
   
-
-.cat-character {
+  .cat-character {
     position: absolute;
     bottom: 0%; /* Position character near the bottom of the container */
     left: 40%;
     transform: translateX(-50%); /* Centers the character horizontally */
     width: 800px; /* Adjust the size of the character */
-    height: 500px; 
-    z-index: 1; 
-}
-
-.navbar {
+    height: 500px;
+    z-index: 1; /* Ensure it's behind the story box and lives counter */
+  }
+  
+  .navbar {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,16 +113,5 @@
   .navbar-buttons a {
     text-decoration: none;
     color: white;
-  }         
-
-  .lives-counter {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 5px 10px;
-    border-radius: 5px;
   }
+  

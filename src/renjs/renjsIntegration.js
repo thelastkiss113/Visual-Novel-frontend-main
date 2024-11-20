@@ -1,5 +1,3 @@
-// frontend/src/renjs/renjsIntegration.js
-
 const storyData = {
   startNode: 'intro',
   nodes: {
@@ -60,16 +58,55 @@ const storyData = {
 
 export function initializeGame(renderNodeCallback) {
   const startNode = storyData.nodes[storyData.startNode];
+  if (!startNode) {
+    console.error('Error: Start node not found.');
+    return;
+  }
   renderNodeCallback(startNode);
 }
 
 export function resetGame(renderNodeCallback) {
-  initializeGame(renderNodeCallback);
+  const startNode = storyData.nodes[storyData.startNode];
+  if (!startNode) {
+    console.error('Error: Start node not found.');
+    return;
+  }
+  renderNodeCallback(startNode);
+}
+
+function playSound(soundPath) {
+  const audio = new Audio(soundPath);
+  audio.play().catch((error) => {
+    console.error('Failed to play sound:', error);
+  });
 }
 
 export function renderNode(nodeKey, renderNodeCallback) {
   const node = storyData.nodes[nodeKey];
+  if (!node) {
+    console.error(`Error: Node with key "${nodeKey}" not found.`);
+    return;
+  }
+  document.body.style.backgroundImage = `url(${node.background})`;
+  document.body.style.backgroundSize = 'cover';
+  document.body.style.backgroundPosition = 'center';
+
+  if (node.sound) {
+    playSound(node.sound);
+  }
+
   renderNodeCallback(node);
+}
+
+export function handleWrongChoice(onLivesDecrement, resetCallback) {
+  onLivesDecrement((currentLives) => {
+    const updatedLives = currentLives - 1;
+    if (updatedLives <= 0) {
+      resetCallback();
+      return 3; // Reset lives to 3
+    }
+    return updatedLives;
+  });
 }
 
 export default storyData;

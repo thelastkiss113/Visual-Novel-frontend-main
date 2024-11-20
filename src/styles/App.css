@@ -1,11 +1,10 @@
 /* frontend/src/styles/App.css */
 body {
-  font-family: 'Amatic SC', cursive; /* Or a similar playful font */
-  margin: 0;
+  font-family: 'Amatic SC', cursive; 
   background-color: #e673bc;
   background-size: cover;
   background-repeat: no-repeat;
-  filter: blur(.5px); /* Subtle blur effect */
+  filter: blur(.5px); /* Add a blur effect to blur the background image*/
 }
 
 h1 {
@@ -21,7 +20,7 @@ h1 {
   box-shadow: 0px 2px 10px rgba(0, 0, 0,   
  0.1); 
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.8); 
 }
 
 .navbar-buttons .link-button {
