@@ -1,0 +1,47 @@
+<!-- frontend/index.html
+  The entry point for the frontend. -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game App</title>
+    <style>
+      /* Style the h1 container to make the links evenly spaced */
+      .global-navbar {
+        display: flex;
+        justify-content: space-evenly; /* Spread the links evenly */
+        align-items: center; /* Vertically center the links */
+        width: 100%; /* Full width of the page */
+        margin: 0; /* Remove default margin */
+        padding: 10px; /* Space out the navbar */
+        background-color: #f676e1; /* Light background color */
+      }
+  
+      /* Style each individual link */
+      .global-navbar a {
+        text-decoration: none; /* Remove underline */
+        font-size: 1.5rem; /* Make the font larger */
+        color: #333; /* Dark text color */
+        font-weight: bold; /* Make the text bold */
+      }
+  
+      /* Hover effect for links */
+      .global-navbar a:hover {
+        color: #007BFF; /* Change color on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="global-navbar">
+      <!-- Navigation links -->
+      <a href="/home">Home</a>
+      <a href="/games">Games</a>
+      <a href="/about">About</a>
+    </div>
+  
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+  </html>
+  

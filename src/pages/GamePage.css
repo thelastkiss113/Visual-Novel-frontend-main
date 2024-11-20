@@ -1,0 +1,107 @@
+/* frontend/src/pages/GamePage.css */
+
+
+.game-container {
+    position: relative; 
+    width: 90%;
+    height: 80vh; 
+    background-image: url('/assets/images/catcafebackground2.png');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    padding: 20px; 
+}
+
+.story-box {
+    position: relative; 
+    background-color: rgba(0, 0, 0, 0.04); 
+    opacity: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 100%; 
+    color: white;
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+#gameCanvas {
+    position: center;
+    width: 80%;
+    padding: 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #2828286e;
+    margin-top: 20px;
+    margin: 20px auto;
+    z-index: 2;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3700b3;
+}
+
+.choicesContainer { width: 80%;
+
+}
+
+.cat-character {
+    position: absolute;
+    bottom: 0%; /* Position character near the bottom of the container */
+    left: 40%;
+    transform: translateX(-50%); /* Centers the character horizontally */
+    width: 800px; /* Adjust the size of the character */
+    height: 500px; 
+    z-index: 1; 
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .navbar h1 {
+    margin-bottom: 20px;
+  }
+  
+  .navbar-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .navbar-buttons button {
+    padding: 10px 20px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+  
+  .navbar-buttons button:hover {
+    background-color: #3700b3;
+  }
+  
+  .navbar-buttons a {
+    text-decoration: none;
+    color: white;
+  }         
+
+  
