@@ -1,6 +1,6 @@
 // frontend/src/pages/GamePage.jsx
 import React, { useState, useEffect } from 'react';
-import { initializeGame, resetGame } from '/src/renjs/renjsIntegration.js'; // Import RenJS functions
+import { initializeGame, resetGame, renderNode } from '/src/renjs/renjsIntegration.js'; // Import RenJS functions
 import './GamePage.css'; // Importing CSS for styling
 
 const GamePage = ({ player }) => {
@@ -12,7 +12,7 @@ const GamePage = ({ player }) => {
   // Initialize the game on mount
   useEffect(() => {
     if (player) {
-      initializeGame(renderStoryNode); // Pass renderStoryNode as a callback
+      initializeGame(renderStoryNode); // Pass renderStoryNode as a callback to initialize the game
     }
   }, [player]);
 
@@ -37,7 +37,7 @@ const GamePage = ({ player }) => {
       const newLives = prevLives - 1;
 
       if (newLives <= 0) {
-        resetGame(renderStoryNode); // Reset the game if no lives remain
+        resetGame(renderStoryNode); // Reset the game
         setIsGameOver(true); // Mark as game over
         return 3; // Reset lives to 3 after game over
       }
@@ -48,11 +48,14 @@ const GamePage = ({ player }) => {
 
   // Handle correct choice (navigate to the next node)
   const handleCorrectChoice = (nextNodeId) => {
-    initializeGame().goTo(nextNodeId, renderStoryNode); // Navigate to the next story node
+    renderNode(nextNodeId, renderStoryNode); // Navigate to the next story node
   };
 
   return (
     <div className="game-container">
+      {/* Lives Counter */}
+      <div className="lives-counter">Lives Remaining: {remainingLives}</div>
+
       {/* Game Over Message */}
       {isGameOver && (
         <div className="game-over">
@@ -62,9 +65,6 @@ const GamePage = ({ player }) => {
 
       {/* Display Player's Name */}
       <h1>Welcome, {player?.name || 'Player'}!</h1> {/* Display player name */}
-
-      {/* Display Remaining Lives */}
-      <p>Lives Remaining: {remainingLives}</p>
 
       {/* Game Canvas */}
       <div id="gameCanvas">
@@ -78,8 +78,8 @@ const GamePage = ({ player }) => {
                 key={index}
                 onClick={() =>
                   choice.isWrongChoice
-                    ? handleWrongChoice()
-                    : handleCorrectChoice(choice.nextNode)
+                    ? handleWrongChoice()  // If it's a wrong choice, handle life loss
+                    : handleCorrectChoice(choice.nextNode)  // If it's a correct choice, go to next node
                 }
               >
                 {choice.text} {/* Display choice text */}

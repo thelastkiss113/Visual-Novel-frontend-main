@@ -15,6 +15,7 @@
     padding: 20px;
   }
   
+  /* Lives Counter at the top left */
   .lives-counter {
     position: absolute;
     top: 10px;
@@ -25,9 +26,10 @@
     background-color: rgba(0, 0, 0, 0.6);
     padding: 5px 10px;
     border-radius: 5px;
-    z-index: 3;
+    z-index: 3; /* Ensure it's in front of the other elements */
   }
   
+  /* Story Box Styles */
   .story-box {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 15px;
@@ -37,9 +39,10 @@
     text-align: center;
     margin: 20px auto;
     position: relative;
-    z-index: 2; 
+    z-index: 2; /* Ensure it sits in front of the background but behind the lives counter */
   }
   
+  /* Game Canvas Styles */
   #gameCanvas {
     width: 80%;
     margin: 20px auto;
@@ -49,6 +52,7 @@
     background-color: rgba(40, 40, 40, 0.8);
   }
   
+  /* Button Styles */
   button {
     margin: 5px;
     padding: 10px 20px;
@@ -63,12 +67,14 @@
     background-color: #3700b3;
   }
   
+  /* Choices Section - Flex layout to arrange the buttons */
   .choices {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
   }
   
+  /* Cat Character Image Styling */
   .cat-character {
     position: absolute;
     bottom: 0%; /* Position character near the bottom of the container */
@@ -79,6 +85,7 @@
     z-index: 1; /* Ensure it's behind the story box and lives counter */
   }
   
+  /* Navbar Styles (If required) */
   .navbar {
     display: flex;
     flex-direction: column;
