@@ -1,12 +1,12 @@
-/// frontend/src/renjs/renjsIntegration.js
+// frontend/src/renjs/renjsIntegration.js
 
 const storyData = {
   startNode: 'intro',
   nodes: {
     intro: {
       text: 'Welcome to the Cat Café. Will you escape?',
-      background: '/assets/images/catcafebackground2.png', // Background for intro
-      sound: '/assets/sounds/intro.mp3', // Background music
+      background: '/assets/images/catcafebackground2.png',
+      sound: '/assets/sounds/intro.mp3',
       choices: [
         { text: 'Explore the kitchen', nextNode: 'kitchen' },
         { text: 'Talk to the mysterious cat', nextNode: 'mysteryCat' },
@@ -58,85 +58,18 @@ const storyData = {
   },
 };
 
-// Function to initialize the game
-export function initializeGame() {
-  const gameCanvas = document.getElementById('gameCanvas');
-
-  if (!gameCanvas) {
-    console.error('Game canvas element not found!');
-    return;
-  }
-
-  // Function to render a story node
-  const renderNode = (nodeKey) => {
-    const node = storyData.nodes[nodeKey];
-
-    if (!node) {
-      gameCanvas.innerHTML = '<p>Error: Story node not found!</p>';
-      return;
-    }
-
-    // Update background image
-    document.body.style.backgroundImage = `url(${node.background})`;
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center';
-
-    // Play sound
-    if (node.sound) {
-      playSound(node.sound);
-    }
-
-    // Display the node text
-    gameCanvas.innerHTML = `<p>${node.text}</p>`;
-
-    // Render the choices as buttons
-    const choicesContainer = document.createElement('div');
-    choicesContainer.className = 'choices-container'; // Add styling class for choices
-    node.choices.forEach((choice) => {
-      const button = document.createElement('button');
-      button.textContent = choice.text;
-      button.onclick = () => {
-        if (choice.isWrongChoice) {
-          // Handle wrong choices (reduce lives, reset if necessary)
-          handleWrongChoice();
-        } else {
-          renderNode(choice.nextNode);
-        }
-      };
-      choicesContainer.appendChild(button);
-    });
-
-    gameCanvas.appendChild(choicesContainer);
-  };
-
-  // Start the game at the start node
-  renderNode(storyData.startNode);
+export function initializeGame(renderNodeCallback) {
+  const startNode = storyData.nodes[storyData.startNode];
+  renderNodeCallback(startNode);
 }
 
-// Function to reset the game to the start node
-export function resetGame() {
-  const gameCanvas = document.getElementById('gameCanvas');
-
-  if (!gameCanvas) {
-    console.error('Game canvas element not found!');
-    return;
-  }
-
-  // Reset the game by re-rendering the start node
-  gameCanvas.innerHTML = ''; // Clear the game canvas
-  initializeGame(); // Reinitialize the game at the start node
+export function resetGame(renderNodeCallback) {
+  initializeGame(renderNodeCallback);
 }
 
-// Utility to play sound
-function playSound(soundPath) {
-  const audio = new Audio(soundPath);
-  audio.play();
-}
-
-// Handle wrong choice
-function handleWrongChoice() {
-  alert('Wrong choice! You’ve lost a life.');
-  // Implement additional logic here for reducing lives or resetting the game
+export function renderNode(nodeKey, renderNodeCallback) {
+  const node = storyData.nodes[nodeKey];
+  renderNodeCallback(node);
 }
 
 export default storyData;

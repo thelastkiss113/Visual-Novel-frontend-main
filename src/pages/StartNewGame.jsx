@@ -1,8 +1,7 @@
 // frontend/src/pages/StartNewGame.jsx
 import React, { useState } from 'react';
 
-const StartNewGame = () => {
-  console.log('StartNewGame component rendered');
+const StartNewGame = ({ createNewGame }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [level, setLevel] = useState(1);
@@ -11,7 +10,6 @@ const StartNewGame = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log('Submitting form with data:', { name, email, level, lives });
       const response = await fetch('/api/players', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -19,6 +17,7 @@ const StartNewGame = () => {
       });
       const data = await response.json();
       console.log('Received data from server:', data);
+      createNewGame(data);
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -26,7 +25,7 @@ const StartNewGame = () => {
 
   return (
     <div style={{ backgroundColor: '#ffffcc', padding: '20px', borderRadius: '10px' }}>
-      <h1 style={{ color: '#333' }}>Start New Game</h1>
+      <h1>Start New Game</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Name:

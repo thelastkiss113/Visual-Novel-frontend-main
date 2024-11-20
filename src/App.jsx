@@ -1,6 +1,6 @@
-//frontend/src/App.jsx
-//entry point for the frontend
-import React from 'react';
+// frontend/src/App.jsx
+// Entry point for the frontend
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import GamePage from './pages/GamePage';
@@ -9,14 +9,26 @@ import LoadGame from './pages/LoadGame';
 import './styles/App.css';
 
 const App = () => {
+  const [player, setPlayer] = useState(null); // Store player data in the state
+
+  // Function to set the player when a new player is created
+  const createNewGame = (newPlayer) => {
+    setPlayer(newPlayer); // Update the player data
+  };
+
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/start-new-game" element={<StartNewGame />} />
-        <Route path="/load-game" element={<LoadGame />} />
-        <Route path="/" element={<GamePage />} />
-        <Route path="/home" element={<GamePage />} />
+        {/* Start New Game */}
+        <Route path="/start-new-game" element={<StartNewGame createNewGame={createNewGame} />} />
+
+        {/* Load Game */}
+        <Route path="/load-game" element={<LoadGame setPlayer={setPlayer} />} />
+
+        {/* Home or GamePage */}
+        <Route path="/" element={<GamePage player={player} />} />
+        <Route path="/home" element={<GamePage player={player} />} />
       </Routes>
     </BrowserRouter>
   );
