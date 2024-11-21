@@ -1,95 +1,82 @@
 // frontend/src/pages/GamePage.jsx
 import React, { useState, useEffect } from 'react';
-import { initializeGame, resetGame, renderNode } from '/src/renjs/renjsIntegration.js'; // Import RenJS functions
-import './GamePage.css'; // Importing CSS for styling
+import { initializeGame, resetGame, renderNode } from '/src/renjs/renjsIntegration.js';
+import './GamePage.css';
 
 const GamePage = ({ player }) => {
-  const [remainingLives, setRemainingLives] = useState(player?.lives || 3); // Player lives
-  const [isGameOver, setIsGameOver] = useState(false); // Game Over state
-  const [currentStoryText, setCurrentStoryText] = useState(''); // Story text
-  const [availableChoices, setAvailableChoices] = useState([]); // Choices for the current story node
+  const [remainingLives, setRemainingLives] = useState(player?.lives || 3);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [currentStoryText, setCurrentStoryText] = useState('');
+  const [availableChoices, setAvailableChoices] = useState([]);
 
-  // Initialize the game on mount
   useEffect(() => {
     if (player) {
-      initializeGame(renderStoryNode); // Pass renderStoryNode as a callback to initialize the game
+      initializeGame(renderStoryNode);
     }
   }, [player]);
 
-  // Render a specific story node
   const renderStoryNode = (node) => {
     if (!node) {
       console.error('Error: Story node not found.');
       setCurrentStoryText('Error: Story node not found.');
-      setAvailableChoices([]); // Clear choices if the node is missing
+      setAvailableChoices([]);
       return;
     }
 
-    console.log('Rendering story node:', node); // Debugging
-
-    setCurrentStoryText(node.text); // Set story text
-    setAvailableChoices(node.choices || []); // Set choices or empty array
+    setCurrentStoryText(node.text);
+    setAvailableChoices(node.choices || []);
   };
 
-  // Handle wrong choice (decrement lives)
   const handleWrongChoice = () => {
     setRemainingLives((prevLives) => {
       const newLives = prevLives - 1;
 
       if (newLives <= 0) {
-        resetGame(renderStoryNode); // Reset the game
-        setIsGameOver(true); // Mark as game over
-        return 3; // Reset lives to 3 after game over
+        resetGame(renderStoryNode);
+        setIsGameOver(true);
+        return 3; // Reset lives to 3
       }
 
       return newLives;
     });
   };
 
-  // Handle correct choice (navigate to the next node)
   const handleCorrectChoice = (nextNodeId) => {
-    renderNode(nextNodeId, renderStoryNode); // Navigate to the next story node
+    renderNode(nextNodeId, renderStoryNode);
   };
 
   return (
     <div className="game-container">
-      {/* Lives Counter */}
       <div className="lives-counter">Lives Remaining: {remainingLives}</div>
 
-      {/* Game Over Message */}
       {isGameOver && (
         <div className="game-over">
           <p>Game Over! Please start a new game.</p>
         </div>
       )}
 
-      {/* Display Player's Name */}
-      <h1>Welcome, {player?.name || 'Player'}!</h1> {/* Display player name */}
+      <h1>Welcome, {player?.name || 'Player'}!</h1>
 
-      {/* Game Canvas */}
       <div id="gameCanvas">
         <div className="story-box">
-          <p>{currentStoryText}</p> {/* Display story text */}
-
-          {/* Render choices as buttons */}
+          <p>{currentStoryText}</p>
           <div className="choices">
             {availableChoices.map((choice, index) => (
               <button
                 key={index}
                 onClick={() =>
                   choice.isWrongChoice
-                    ? handleWrongChoice()  // If it's a wrong choice, handle life loss
-                    : handleCorrectChoice(choice.nextNode)  // If it's a correct choice, go to next node
+                    ? handleWrongChoice()
+                    : handleCorrectChoice(choice.nextNode)
                 }
               >
-                {choice.text} {/* Display choice text */}
+                {choice.text}
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Character Image */}
       <img
         src="/assets/images/maincat1-removebg-preview.png"
         alt="Main Character"

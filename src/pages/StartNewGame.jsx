@@ -1,4 +1,3 @@
-// frontend/src/pages/StartNewGame.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,6 +21,10 @@ const StartNewGame = ({ createNewGame }) => {
       });
 
       if (!response.ok) {
+        if (response.status === 409) { // Conflict: Player already exists
+          alert('Player already exists. Please use a different name or email.');
+          return;
+        }
         throw new Error('Failed to create player');
       }
 
