@@ -4,7 +4,6 @@ const storyData = {
     intro: {
       text: 'Meoowlo! Welcome to the Cat Café. It can be pretty chill here. But I crave the outdoors. Will you help me escape? Be careful though, if we make a wrong choice it will cost me a life. I only have 9.',
       background: '/assets/images/catcafebackground2.png',
-      sound: '/assets/sounds/easy-cozy-start.mp3',
       choices: [
         { text: 'Explore the kitchen', nextNode: 'kitchen' },
         { text: 'Talk to the mysterious cat', nextNode: 'mysteryCat' },
@@ -14,7 +13,7 @@ const storyData = {
     kitchen: {
       text: 'The kitchen smells like fish. What do you do?',
       background: '/assets/images/kitchen.png',
-      sound: '/assets/sounds/kitchen.mp3',
+      sound: '/assets/sounds/easy-cozy-start.mp3',
       choices: [
         { text: 'Search the fridge', nextNode: 'fridge' },
         { text: 'Leave the kitchen', nextNode: 'intro' },

@@ -1,0 +1,74 @@
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="/styles/App.css"> 
+  </head>
+  <body>
+    <style>
+        body {
+            background-color: #F5AFDB;
+        }
+     
+      .global-navbar {
+        display: flex;
+        justify-content: space-evenly; /* Spread the links evenly */
+        align-items: center; /* Vertically center the links */
+        width: 100%; /* Full width of the page */
+        margin: 0; /* Remove default margin */
+        padding: 10px; /* Space out the navbar */
+        background-color: #f676e1; /* Light background color */
+      }
+  
+      /* Style each individual link */
+      .global-navbar a {
+        text-decoration: none; /* Remove underline */
+        font-size: 1.5rem; /* Make the font larger */
+        color: #333; /* Dark text color */
+        font-weight: bold; /* Make the text bold */
+      }
+  
+      /* Hover effect for links */
+      .global-navbar a:hover {
+        color: #007BFF; /* Change color on hover */
+      }
+    </style>
+    <!-- Global Navbar -->
+    <div class="global-navbar">
+      <a href="/home">Home</a>
+      <a href="/games.html">Games</a>
+      <a href="/about.html">About</a>
+    </div>
+
+    <div class="about-container">
+      <h1>About Page</h1>
+      <p>This is the About page where you can learn more about the project.</p>
+     
+      
+      <div class="contact-form">
+        <h2>Contact Me</h2>
+        <form action="[form_service_url]" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br><br>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br><br>
+    
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" cols="30" required></textarea>
+            <br><br>
+    
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    
+    </div>
+
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>

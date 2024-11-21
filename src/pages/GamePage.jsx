@@ -4,7 +4,7 @@ import { initializeGame, resetGame, renderNode } from '/src/renjs/renjsIntegrati
 import './GamePage.css';
 
 const GamePage = ({ player }) => {
-  const [remainingLives, setRemainingLives] = useState(player?.lives || 3);
+  const [remainingLives, setRemainingLives] = useState(player?.lives || 9);
   const [isGameOver, setIsGameOver] = useState(false);
   const [currentStoryText, setCurrentStoryText] = useState('');
   const [availableChoices, setAvailableChoices] = useState([]);
@@ -34,7 +34,7 @@ const GamePage = ({ player }) => {
       if (newLives <= 0) {
         resetGame(renderStoryNode);
         setIsGameOver(true);
-        return 3; // Reset lives to 3
+        return 9; // Reset lives to 9
       }
 
       return newLives;

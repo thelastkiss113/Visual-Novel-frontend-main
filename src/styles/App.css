@@ -1,7 +1,10 @@
 /* frontend/src/styles/App.css */
 body {
+
   font-family: 'Amatic SC', cursive; 
-  background-color: #e673bc;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #f5afdb;
   background-size: cover;
   background-repeat: no-repeat;
   filter: blur(.5px); /* Add a blur effect to blur the background image*/
@@ -36,3 +39,19 @@ h1 {
 .navbar-buttons .link-button:hover {
   background-color: #3700b3;
 }
+
+/* Center the text inside the body */
+.centered {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;     /* Vertically center */
+  height: 100vh;           /* Full viewport height */
+  text-align: center;      /* Center the text inside the element */
+  flex-direction: column;  /* Stack items vertically */
+  margin: 0;               /* Remove default margin */
+}
+
+.centered h1, .centered p {
+  margin: 10px 0;          /* Optional: add space between the heading and paragraph */
+}
+

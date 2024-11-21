@@ -7,10 +7,10 @@ const Navbar = ({ createNewGame, updatePlayerProgress, deletePlayerProgress, loa
   <nav className="navbar">
     <h1>9 Lives: a Cat Café Escape Room</h1>
     <div className="navbar-buttons">
-    <Link to="/start-new-game" className="link-button">Start New Game</Link>
-    <Link to="/load-game" className="link-button">Load Game</Link>
-      <button onClick={updatePlayerProgress}>Save Progress</button>
-      <button onClick={deletePlayerProgress}>Delete Progress</button>
+      <Link to="/start-new-game" className="link-button">Start New Game</Link>
+      <Link to="/load-game" className="link-button">Load Game</Link>
+      <Link to="/save-game" className="link-button">Save Progress</Link> 
+      <Link to="/delete-player" className="link-button">Delete Player</Link> 
     </div>
   </nav>
 );
