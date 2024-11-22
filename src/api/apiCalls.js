@@ -1,5 +1,7 @@
 //frontend/src/api/apiCalls.js
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+ const API_BASE_URL = 'https://visual-novel-backend-main.onrender.com/api';
+
+//process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
 // Fetch all players
 export const fetchPlayers = async () => {
