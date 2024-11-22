@@ -1,6 +1,6 @@
 // frontend/src/pages/GamePage.jsx
 import React, { useState, useEffect } from 'react';
-import { initializeGame, resetGame, renderNode } from '/src/renjs/renjsIntegration.js';
+import { initializeGame, renderNode } from '/src/renjs/renjsIntegration.js';
 import './GamePage.css';
 
 const GamePage = ({ player }) => {
@@ -8,6 +8,7 @@ const GamePage = ({ player }) => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [currentStoryText, setCurrentStoryText] = useState('');
   const [availableChoices, setAvailableChoices] = useState([]);
+  const [currentCharacter, setCurrentCharacter] = useState('');
 
   useEffect(() => {
     if (player) {
@@ -25,39 +26,37 @@ const GamePage = ({ player }) => {
 
     setCurrentStoryText(node.text);
     setAvailableChoices(node.choices || []);
-  };
-
-  const handleWrongChoice = () => {
-    setRemainingLives((prevLives) => {
-      const newLives = prevLives - 1;
-
-      if (newLives <= 0) {
-        resetGame(renderStoryNode);
-        setIsGameOver(true);
-        return 9; // Reset lives to 9
-      }
-
-      return newLives;
-    });
+    setCurrentCharacter(node.character || '');
   };
 
   const handleCorrectChoice = (nextNodeId) => {
     renderNode(nextNodeId, renderStoryNode);
   };
 
+  const handleWrongChoice = () => {
+    setRemainingLives((prevLives) => {
+      const newLives = prevLives - 1;
+      if (newLives <= 0) {
+        setIsGameOver(true);
+        return 9; // Reset lives to 9
+      }
+      return newLives;
+    });
+  };
+
   return (
     <div className="game-container">
       <div className="lives-counter">Lives Remaining: {remainingLives}</div>
-
-      {isGameOver && (
-        <div className="game-over">
-          <p>Game Over! Please start a new game.</p>
-        </div>
-      )}
+      {isGameOver && <div className="game-over">Game Over! Please start a new game.</div>}
 
       <h1>Welcome, {player?.name || 'Player'}!</h1>
 
       <div id="gameCanvas">
+        {currentCharacter && (
+          <div className="character-container">
+            <img src={currentCharacter} alt="Character" className="character-image" />
+          </div>
+        )}
         <div className="story-box">
           <p>{currentStoryText}</p>
           <div className="choices">
@@ -76,14 +75,9 @@ const GamePage = ({ player }) => {
           </div>
         </div>
       </div>
-
-      <img
-        src="/assets/images/maincat1-removebg-preview.png"
-        alt="Main Character"
-        className="cat-character"
-      />
     </div>
   );
 };
 
 export default GamePage;
+

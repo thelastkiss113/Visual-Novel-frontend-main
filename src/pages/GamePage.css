@@ -1,124 +1,197 @@
 /* frontend/src/pages/GamePage.css */
 
 .game-container {
-    position: relative;
-    width: 90%;
-    height: 80vh;
-    background-image: url("/assets/images/catcafebackground2.png");
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    font-family: "Arial", sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  
-  /* Lives Counter at the top left */
-  .lives-counter {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 5px 10px;
-    border-radius: 5px;
-    z-index: 3; /* Ensure it's in front of the other elements */
-  }
-  
-  /* Story Box Styles */
-  .story-box {
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 15px;
-    border-radius: 10px;
-    max-width: 100%;
-    color: white;
-    text-align: center;
-    margin: 20px auto;
-    position: relative;
-    z-index: 2; /* Ensure it sits in front of the background but behind the lives counter */
-  }
-  
-  /* Game Canvas Styles */
-  #gameCanvas {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    background-color: rgba(40, 40, 40, 0.8);
-  }
-  
-  /* Button Styles */
-  button {
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #6200ea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #3700b3;
-  }
-  
-  /* Choices Section - Flex layout to arrange the buttons */
-  .choices {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  /* Cat Character Image Styling */
-  .cat-character {
-    position: absolute;
-    bottom: 0%; /* Position character near the bottom of the container */
-    left: 40%;
-    transform: translateX(-50%); /* Centers the character horizontally */
-    width: 800px; /* Adjust the size of the character */
-    height: 500px;
-    z-index: 1; /* Ensure it's behind the story box and lives counter */
-  }
-  
-  /* Navbar Styles (If required) */
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-  }
-  
-  .navbar h1 {
-    margin-bottom: 20px;
-  }
-  
-  .navbar-buttons {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-  }
-  
-  .navbar-buttons button {
-    padding: 10px 20px;
-    background-color: #6200ea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 10px;
-  }
-  
-  .navbar-buttons button:hover {
-    background-color: #3700b3;
-  }
-  
-  .navbar-buttons a {
-    text-decoration: none;
-    color: white;
-  }
-  
+  position: relative;
+  width: 90%;
+  height: 80vh;
+  background-position: center;
+  color: #fff;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  overflow: hidden; /* Ensures the content does not spill out */
+}
+
+/* Lives Counter at the top left */
+.lives-counter {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 3; /* Ensure it's in front of the other elements */
+}
+
+/* Story Box Styles */
+.story-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 100%;
+  color: white;
+  text-align: center;
+  margin: 20px auto;
+  position: relative;
+  z-index: 2; 
+  font-size: 1rem;
+}
+
+/* Game Canvas Styles */
+#gameCanvas {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background-color: rgba(40, 40, 40, 0.8);
+  position: relative;
+  z-index: 1; /* Makes sure the background image is behind */
+}
+
+/* Button Styles */
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* frontend/src/pages/GamePage.css */
+
+.game-container {
+  position: relative;
+  width: 90%;
+  height: 80vh;
+  background-position: center;
+  color: #fff;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Lives Counter at the top left */
+.lives-counter {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 3;
+}
+
+/* Story Box Styles */
+.story-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 100%;
+  color: white;
+  text-align: center;
+  margin: 20px auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Game Canvas Styles */
+#gameCanvas {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background-color: rgba(40, 40, 40, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+/* Button Styles */
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3700b3;
+}
+
+/* Choices Section - Flex layout to arrange the buttons */
+.choices {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Cat Character Image Styling */
+.character-container {
+  position: absolute;
+  bottom: 10%; /* Position character near the bottom of the container */
+  left: 50%;
+  transform: translateY(-1%) translateX(-30%); /* Centers the character horizontally */
+  z-index: 2;
+  width: 800px; /* Adjust the size of the character */
+  height: auto;
+}
+
+.character-image {
+  width: 100%;
+  height: auto;
+}
+
+
+/* Navbar Styles (If required) */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.navbar h1 {
+  margin-bottom: 20px;
+}
+
+.navbar-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.navbar-buttons button {
+  padding: 10px 20px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.navbar-buttons button:hover {
+  background-color: #3700b3;
+}
+
+.navbar-buttons a {
+  text-decoration: none;
+  color: white;
+}

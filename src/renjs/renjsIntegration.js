@@ -4,6 +4,8 @@ const storyData = {
     intro: {
       text: 'Meoowlo! Welcome to the Cat Café. It can be pretty chill here. But I crave the outdoors. Will you help me escape? Be careful though, if we make a wrong choice it will cost me a life. I only have 9.',
       background: '/assets/images/catcafebackground2.png',
+      sound: '/assets/sounds/meows.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Explore the kitchen', nextNode: 'kitchen' },
         { text: 'Talk to the mysterious cat', nextNode: 'mysteryCat' },
@@ -12,8 +14,9 @@ const storyData = {
     },
     kitchen: {
       text: 'The kitchen smells like fish. What do you do?',
-      background: '/assets/images/kitchen.png',
-      sound: '/assets/sounds/easy-cozy-start.mp3',
+      background: '/assets/images/kitchen-background.png',
+      sound: '/assets/sounds/jazz-podcast-night-relaxing-vibes-242886.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Search the fridge', nextNode: 'fridge' },
         { text: 'Leave the kitchen', nextNode: 'intro' },
@@ -24,6 +27,7 @@ const storyData = {
       text: 'You open the fridge and find some fish! But it’s cold and you lose a life.',
       background: '/assets/images/fridge.png',
       sound: '/assets/sounds/life-lost.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Return to the kitchen', nextNode: 'kitchen', isWrongChoice: true },
         { text: 'Go back to the front door', nextNode: 'frontDoor' },
@@ -211,7 +215,7 @@ const storyData = {
     },
   },
 };
-
+// Initialize the game with the first story node
 export function initializeGame(renderNodeCallback) {
   const startNode = storyData.nodes[storyData.startNode];
   if (!startNode) {
@@ -221,48 +225,42 @@ export function initializeGame(renderNodeCallback) {
   renderNodeCallback(startNode);
 }
 
-export function resetGame(renderNodeCallback) {
-  const startNode = storyData.nodes[storyData.startNode];
-  if (!startNode) {
-    console.error('Error: Start node not found.');
-    return;
-  }
-  renderNodeCallback(startNode);
-}
-
-function playSound(soundPath) {
-  const audio = new Audio(soundPath);
-  audio.play().catch((error) => {
-    console.error('Failed to play sound:', error);
-  });
-}
-
 export function renderNode(nodeKey, renderNodeCallback) {
   const node = storyData.nodes[nodeKey];
   if (!node) {
     console.error(`Error: Node with key "${nodeKey}" not found.`);
     return;
   }
-  document.body.style.backgroundImage = `url(${node.background})`;
-  document.body.style.backgroundSize = 'cover';
-  document.body.style.backgroundPosition = 'center';
 
+  const gameContainer = document.querySelector('.game-container');
+  if (gameContainer) {
+    // Update the background image of the game container
+    gameContainer.style.backgroundImage = `url(${node.background})`;
+    gameContainer.style.backgroundSize = 'cover';
+    gameContainer.style.backgroundPosition = 'center';
+  }
+
+  // Set character image if present
+  const characterContainer = document.querySelector('.character-container');
+  if (characterContainer) {
+    // Remove any existing character image if there is one
+    characterContainer.innerHTML = '';
+    if (node.character) {
+      const characterImage = document.createElement('img');
+      characterImage.src = node.character;
+      characterImage.alt = 'Character';
+      characterImage.className = 'character-image';
+      characterContainer.appendChild(characterImage);
+    }
+  }
+
+  // Play sound if available
   if (node.sound) {
-    playSound(node.sound);
+    const audio = new Audio(node.sound);
+    audio.play().catch((error) => console.error('Failed to play sound:', error));
   }
 
   renderNodeCallback(node);
-}
-
-export function handleWrongChoice(onLivesDecrement, resetCallback) {
-  onLivesDecrement((currentLives) => {
-    const updatedLives = currentLives - 1;
-    if (updatedLives <= 0) {
-      resetCallback();
-      return 3; // Reset lives to 3
-    }
-    return updatedLives;
-  });
 }
 
 export default storyData;

@@ -55,3 +55,8 @@ h1 {
   margin: 10px 0;          /* Optional: add space between the heading and paragraph */
 }
 
+/* Reset #root background */
+#root {
+  background: none;
+ 
+}
