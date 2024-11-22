@@ -1,49 +1,51 @@
-<!-- frontend/index.html
-  The entry point for the frontend. -->
-  <!DOCTYPE html>
-  <html lang="en">
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game App</title>
     <style>
-      /* Style the h1 container to make the links evenly spaced */
       .global-navbar {
         display: flex;
-        justify-content: space-evenly; /* Spread the links evenly */
-        align-items: center; /* Vertically center the links */
-        width: 100%; /* Full width of the page */
-        margin: 0; /* Remove default margin */
-        padding: 10px; /* Space out the navbar */
-        background-color: #f676e1; /* Light background color */
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+        background-color: #f676e1;
       }
-  
-      /* Style each individual link */
+
       .global-navbar a {
-        text-decoration: none; /* Remove underline */
-        font-size: 1.5rem; /* Make the font larger */
-        color: #333; /* Dark text color */
-        font-weight: bold; /* Make the text bold */
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: #333;
+        font-weight: bold;
       }
-  
-      /* Hover effect for links */
+
       .global-navbar a:hover {
-        color: #007BFF; /* Change color on hover */
+        color: #007BFF;
       }
     </style>
   </head>
   <body>
- <!-- Nav Bar -->
- <div class="global-navbar">
-  <a href="/home">Home</a>
-  <!-- Link to games.html -->
-  <a href="/games.html">Games</a> 
-  <!-- Link to about.html -->
-  <a href="/about.html">About</a>
-</div>
-  
+    <!-- Nav Bar -->
+    <div class="global-navbar">
+      <a href="/home" onclick="stopBackgroundAudio()">Home</a>
+      <a href="/games.html" onclick="stopBackgroundAudio()">Games</a>
+      <a href="/about.html" onclick="stopBackgroundAudio()">About</a>
+    </div>
+
+    <script type="module">
+      import { stopAllAudio } from '/src/renjs/renjsIntegration.js';
+
+      // Stop all background music when NavBar link is clicked
+      function stopBackgroundAudio() {
+        stopAllAudio();
+      }
+    </script>
+
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
   </body>
-  </html>
-  
+</html>

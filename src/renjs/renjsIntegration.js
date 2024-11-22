@@ -1,45 +1,59 @@
+//frontend/src/renjs/renjsIntegration.js
+
+let currentBackgroundAudio = null; 
+let currentSoundEffect = null
+
 const storyData = {
   startNode: 'intro',
   nodes: {
     intro: {
-      text: 'Meoowlo! Welcome to the Cat Café. It can be pretty chill here. But I crave the outdoors. Will you help me escape? Be careful though, if we make a wrong choice it will cost me a life. I only have 9.',
+      text: 'Meoowlo! My name is Mittens. ',
       background: '/assets/images/catcafebackground2.png',
       sound: '/assets/sounds/meows.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
+        { text: 'Start the story', nextNode: 'cafe' },
+      ],
+    },
+    cafe: {
+      text: 'Welcome to the Cat Café. It can be pretty chill here. But I crave the outdoors. Will you help me escape? Be careful though, if we make a wrong choice it will cost me a life. I only have 9.',
+      background: '/assets/images/catcafebackground2.png',
+      sound: '/assets/sounds/jazz-podcast-night-relaxing-vibes-242886.mp3',
+      character: '/assets/images/mainCat.png',
+      choices: [
         { text: 'Explore the kitchen', nextNode: 'kitchen' },
-        { text: 'Talk to the mysterious cat', nextNode: 'mysteryCat' },
+        { text: 'Explore the pantry', nextNode: 'pantry' },
         { text: 'Inspect the door', nextNode: 'frontDoor' },
       ],
     },
     kitchen: {
       text: 'The kitchen smells like fish. What do you do?',
       background: '/assets/images/kitchen-background.png',
-      sound: '/assets/sounds/jazz-podcast-night-relaxing-vibes-242886.mp3',
+      sound: '/assets/sounds/meows.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Search the fridge', nextNode: 'fridge' },
-        { text: 'Leave the kitchen', nextNode: 'intro' },
-        { text: 'Open the pantry', nextNode: 'pantry' },
+        { text: 'Let`s explore the bar', nextNode: 'bar' },
+        { text: 'Talk to the mysterious cat', nextNode: 'mysteryCat' },
       ],
     },
     fridge: {
-      text: 'You open the fridge and find some fish! But it’s cold and you lose a life.',
+      text: 'You open the fridge and find some fish! You decide to take a nibble. But it has samonella and you lose a life.',
       background: '/assets/images/fridge.png',
       sound: '/assets/sounds/life-lost.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Return to the kitchen', nextNode: 'kitchen', isWrongChoice: true },
-        { text: 'Go back to the front door', nextNode: 'frontDoor' },
+        { text: 'Return to the cafe', nextNode: 'cafe'},
+      
       ],
     },
     pantry: {
       text: 'The pantry is filled with dry food. One of the bags starts to rip and spills. You lose a life.',
       background: '/assets/images/pantry.png',
       sound: '/assets/sounds/life-lost.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Return to the kitchen', nextNode: 'kitchen' },
-        { text: 'Inspect the back door', nextNode: 'backDoor' },
+        { text: 'Return to the cafe', nextNode: 'cafe' },
       ],
     },
     mysteryCat: {
@@ -48,7 +62,7 @@ const storyData = {
       sound: '/assets/sounds/clue.mp3',
       choices: [
         { text: 'Follow the clue', nextNode: 'storageRoom' },
-        { text: 'Ignore the cat', nextNode: 'intro' },
+        { text: 'Ignore and head to the hallway', nextNode: 'hauntedHallway' },
         { text: 'Ask the cat for more details', nextNode: 'catRiddle' },
       ],
     },
@@ -65,6 +79,7 @@ const storyData = {
       text: 'You enter the storage room. A window glows faintly in the dark.',
       background: '/assets/images/storageRoom.png',
       sound: '/assets/sounds/storage-room.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Inspect the window', nextNode: 'window' },
         { text: 'Look around for other exits', nextNode: 'hiddenPassage' },
@@ -72,17 +87,19 @@ const storyData = {
       ],
     },
     window: {
-      text: 'You find the window unlocked. You escape the Cat Café!',
+      text: 'You find the window locked. But you see a river in the distance.',
       background: '/assets/images/window.png',
       sound: '/assets/sounds/escape.mp3',
       choices: [
-        { text: 'Play again', nextNode: 'intro' },
+        { text: 'return to the storage room', nextNode: 'storageRoom' },
+        { text: 'Head to the library', nextNode: 'library' },
       ],
     },
     frontDoor: {
       text: 'The front door is locked. You notice a strange keypad next to it.',
       background: '/assets/images/frontDoor.png',
       sound: '/assets/sounds/front-door.mp3',
+      character: '/assets/images/mainCat-flipped.png',
       choices: [
         { text: 'Try the keypad', nextNode: 'keypad' },
         { text: 'Go back to the kitchen', nextNode: 'kitchen' },
@@ -94,8 +111,7 @@ const storyData = {
       background: '/assets/images/keypad.png',
       sound: '/assets/sounds/keypad.mp3',
       choices: [
-        { text: 'Try again', nextNode: 'keypad' },
-        { text: 'Leave the door', nextNode: 'intro' },
+        { text: 'Return to the cafe', nextNode: 'cafe' },
       ],
     },
     backDoor: {
@@ -105,7 +121,7 @@ const storyData = {
       choices: [
         { text: 'Knock on the door', nextNode: 'mysteryCat' },
         { text: 'Look for a key', nextNode: 'keySearch' },
-        { text: 'Leave', nextNode: 'intro' },
+        { text: 'Leave to the library', nextNode: 'library' },
       ],
     },
     keySearch: {
@@ -137,16 +153,16 @@ const storyData = {
     undergroundCave: {
       text: 'The passage leads to an underground cave. You hear the faint sound of running water.',
       background: '/assets/images/undergroundCave.png',
-      sound: '/assets/sounds/underground-cave.mp3',
+      sound: '/assets/sounds/river.mp3',
       choices: [
         { text: 'Follow the water', nextNode: 'waterExit' },
         { text: 'Turn back', nextNode: 'intro' },
       ],
     },
     waterExit: {
-      text: 'The water leads you to an exit! You escape the Cat Café!',
+      text: 'The water leads you to an exit! Congratulations! You escape the Cat Café!',
       background: '/assets/images/waterExit.png',
-      sound: '/assets/sounds/escape.mp3',
+      sound: '/assets/sounds/win-game.mp3',
       choices: [
         { text: 'Play again', nextNode: 'intro' },
       ],
@@ -164,9 +180,9 @@ const storyData = {
       text: 'A ghost appears and you lose a life from the scare!',
       background: '/assets/images/ghost.png',
       sound: '/assets/sounds/ghost-scare.mp3',
+      character: '/assets/images/mainCat-flipped.png',
       choices: [
-        { text: 'Run back to the storage room', nextNode: 'storageRoom' },
-        { text: 'Keep walking forward', nextNode: 'mysteryCat' },
+        { text: 'Return to the cafe', nextNode: 'cafe' },
       ],
     },
     library: {
@@ -209,13 +225,40 @@ const storyData = {
       background: '/assets/images/lostLife.png',
       sound: '/assets/sounds/life-lost.mp3',
       choices: [
-        { text: 'Try again', nextNode: 'finalChoice' },
-        { text: 'Return to the intro', nextNode: 'intro' },
+        { text: 'Return to the cafe', nextNode: 'cafe' },
+      ],
+    },
+    bar: {
+      text: 'You find a bar with a strange drink. Will you try it?',
+      background: '/assets/images/strange-drink.png',
+      sound: '/assets/sounds/strange-drink.mp3',
+      choices: [
+        { text: 'Try the drink', nextNode: 'barDrink' },
+        { text: 'Talk to the Barista instead', nextNode: 'barista' },
+        { text: 'Go back to the kitchen', nextNode: 'kitchen' },
+      ],
+    },
+    barista: {
+      text: 'The Barista is a friendly person. Will you ask for a drink?',
+      background: '/assets/images/barista.png',
+      sound: '/assets/sounds/barista.mp3',
+      choices: [
+        { text: 'Ask for a drink', nextNode: 'barDrink' },
+        { text: 'Go back to the kitchen', nextNode: 'kitchen' },
+      ],
+    },
+    barDrink: {
+      text: 'You try the drink, but it has a strange taste. You lose a life.',
+      background: '/assets/images/barDrink.png',
+      sound: '/assets/sounds/drink.mp3',
+      choices: [
+        { text: 'Try again', nextNode: 'cafe' },,
       ],
     },
   },
 };
-// Initialize the game with the first story node
+
+// Function to initialize the game with the first story node
 export function initializeGame(renderNodeCallback) {
   const startNode = storyData.nodes[storyData.startNode];
   if (!startNode) {
@@ -225,6 +268,19 @@ export function initializeGame(renderNodeCallback) {
   renderNodeCallback(startNode);
 }
 
+// Function to stop all audio (used by NavBar and global NavBar)
+export function stopAllAudio() {
+  if (currentBackgroundAudio) {
+    currentBackgroundAudio.pause();
+    currentBackgroundAudio = null;
+  }
+  if (currentSoundEffect) {
+    currentSoundEffect.pause();
+    currentSoundEffect = null;
+  }
+}
+
+// Function to render a specific story node
 export function renderNode(nodeKey, renderNodeCallback) {
   const node = storyData.nodes[nodeKey];
   if (!node) {
@@ -234,16 +290,13 @@ export function renderNode(nodeKey, renderNodeCallback) {
 
   const gameContainer = document.querySelector('.game-container');
   if (gameContainer) {
-    // Update the background image of the game container
     gameContainer.style.backgroundImage = `url(${node.background})`;
     gameContainer.style.backgroundSize = 'cover';
     gameContainer.style.backgroundPosition = 'center';
   }
 
-  // Set character image if present
   const characterContainer = document.querySelector('.character-container');
   if (characterContainer) {
-    // Remove any existing character image if there is one
     characterContainer.innerHTML = '';
     if (node.character) {
       const characterImage = document.createElement('img');
@@ -254,10 +307,23 @@ export function renderNode(nodeKey, renderNodeCallback) {
     }
   }
 
-  // Play sound if available
+  // Handle background music
+  if (nodeKey === 'cafe' && !currentBackgroundAudio) {
+    currentBackgroundAudio = new Audio('/assets/sounds/jazz-podcast-night-relaxing-vibes-242886.mp3');
+    currentBackgroundAudio.loop = true;
+    currentBackgroundAudio.volume = 0.2;
+    currentBackgroundAudio.play().catch((error) => console.error('Failed to play background music:', error));
+  }
+
+  // Handle node-specific sound effects
   if (node.sound) {
-    const audio = new Audio(node.sound);
-    audio.play().catch((error) => console.error('Failed to play sound:', error));
+    if (currentSoundEffect) {
+      currentSoundEffect.pause(); // Stop previous sound effect
+    }
+    if (nodeKey !== 'cafe') {
+      currentSoundEffect = new Audio(node.sound);
+      currentSoundEffect.play().catch((error) => console.error('Failed to play sound effect:', error));
+    }
   }
 
   renderNodeCallback(node);

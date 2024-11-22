@@ -38,39 +38,39 @@ Prerequisites
 Install Node.js:
 
 bash
-Copy code
+
 npm install npm@latest -g
 Installation
 Clone the repository:
 
 bash
-Copy code
+
 git clone https://github.com/github_username/repo_name.git
 Install dependencies:
 
 bash
-Copy code
+
 npm install
 Set up the MongoDB database and create an .env file:
 
 bash
-Copy code
+
 MONGO_URI=<your MongoDB URI>
 PORT=5000
 Start the backend server:
 
 bash
-Copy code
+
 npm run server
 Start the frontend development server:
 
 bash
-Copy code
+
 npm run dev
 Open your browser and navigate to:
 
 arduino
-Copy code
+
 http://localhost:5173
 Usage
 Help the cat escape by making choices that affect the story! Each decision has consequences—choose wisely.
@@ -80,10 +80,10 @@ For more examples, refer to the Documentation.
 
 Roadmap
  Implement story nodes with branching paths.
- Add character animations and sound effects.
+Add character animations and sound effects.
  Save and load game progress.
- Add new environments and puzzles.
- Multiplayer escape room mode.
+Add new environments and puzzles.
+
 See the open issues for a list of proposed features and known issues.
 
 Contributing
@@ -92,15 +92,15 @@ Contributions are what make open-source great! Here's how you can contribute:
 Fork the project.
 Create your feature branch:
 bash
-Copy code
+
 git checkout -b feature/AmazingFeature
 Commit your changes:
 bash
-Copy code
+
 git commit -m 'Add some AmazingFeature'
 Push to the branch:
 bash
-Copy code
+
 git push origin feature/AmazingFeature
 Open a pull request.
 Don’t forget to give the project a star ⭐ if you like it!
