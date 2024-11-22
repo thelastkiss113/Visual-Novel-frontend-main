@@ -71,8 +71,8 @@ const storyData = {
       background: '/assets/images/catRiddle.png',
       sound: '/assets/sounds/cat-riddle.mp3',
       choices: [
-        { text: 'Follow the riddle', nextNode: 'hiddenPassage' },
-        { text: 'Go back to the intro', nextNode: 'intro' },
+        { text: 'Head to the library', nextNode: 'library' },
+        { text: 'Explore the hallway', nextNode: 'hallway' },
       ],
     },
     storageRoom: {
@@ -91,7 +91,7 @@ const storyData = {
       background: '/assets/images/window.png',
       sound: '/assets/sounds/escape.mp3',
       choices: [
-        { text: 'return to the storage room', nextNode: 'storageRoom' },
+        { text: 'Return to the storage room', nextNode: 'storageRoom' },
         { text: 'Head to the library', nextNode: 'library' },
       ],
     },
@@ -107,7 +107,7 @@ const storyData = {
       ],
     },
     keypad: {
-      text: 'You try to input a code, but it’s a bit tricky and you lose a life.',
+      text: 'You try to input a code, but it’s a bit tricky with your paws and you lose a life.',
       background: '/assets/images/keypad.png',
       sound: '/assets/sounds/keypad.mp3',
       choices: [
@@ -189,6 +189,7 @@ const storyData = {
       text: 'You stumble upon a library filled with books about escape. Should you read?',
       background: '/assets/images/library.png',
       sound: '/assets/sounds/library.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Read a book on escaping', nextNode: 'escapeBook' },
         { text: 'Ignore the books and leave', nextNode: 'intro' },
