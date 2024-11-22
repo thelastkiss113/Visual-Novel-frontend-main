@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/save-game" element={<SaveGamePage player={player} />} />
         <Route path="/delete-player" element={<DeletePlayer player={player} setPlayer={setPlayer} />} /> {/* Add DeletePlayer route */}
         <Route path="/" element={<GamePage player={player} />} />
-        <Route path="/home" element={<GamePage player={player} />} />
+        {/* <Route path="/home" element={<GamePage player={player} />} /> */}
       </Routes>
     </BrowserRouter>
   );
