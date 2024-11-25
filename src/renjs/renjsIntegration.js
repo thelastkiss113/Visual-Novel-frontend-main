@@ -53,7 +53,7 @@ const storyData = {
       sound: '/assets/sounds/life-lost.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
+        { text: 'Return to the cafe', nextNode: 'cafe' },
       ],
     },
     mysteryCat: {
@@ -118,6 +118,7 @@ const storyData = {
       text: 'You find the back door, but it’s locked too. Something is strange about this place.',
       background: '/assets/images/backDoor.png',
       sound: '/assets/sounds/back-door.mp3',
+      character: '/assets/images/mainCat.png',  
       choices: [
         { text: 'Knock on the door', nextNode: 'mysteryCat' },
         { text: 'Look for a key', nextNode: 'keySearch' },
@@ -145,6 +146,7 @@ const storyData = {
       text: 'You find a hidden passage behind a bookshelf! It’s dark and creepy.',
       background: '/assets/images/hiddenPassage.png',
       sound: '/assets/sounds/creepy-passage.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Enter the passage', nextNode: 'undergroundCave' },
         { text: 'Leave and go back to the kitchen', nextNode: 'kitchen' },
@@ -157,7 +159,7 @@ const storyData = {
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Follow the water', nextNode: 'waterExit' },
-        { text: 'Turn back', nextNode: 'intro' },
+        { text: 'Turn back', nextNode: 'hiddenPassage' },
       ],
     },
     waterExit: {
@@ -175,7 +177,7 @@ const storyData = {
       sound: '/assets/sounds/haunted.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Walk down the hallway', nextNode: 'ghost' },
+        { text: 'Walk down the hallway', nextNode: 'ghost', isWrongChoice: true },
         {text: 'Walk to the left', nextNode: 'finalChoice'},
         { text: 'Return to the storage room', nextNode: 'storageRoom' },
       ],
@@ -186,7 +188,7 @@ const storyData = {
       sound: '/assets/sounds/life-lost.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
+        { text: 'Return to the cafe', nextNode: 'cafe' },
       ],
     },
     library: {
