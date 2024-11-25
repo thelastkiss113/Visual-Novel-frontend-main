@@ -33,7 +33,7 @@ const GamePage = ({ player }) => {
     renderNode(nextNodeId, renderStoryNode);
   };
 
-  const handleWrongChoice = () => {
+  const handleWrongChoice = (nextNodeId) => {
     setRemainingLives((prevLives) => {
       const newLives = prevLives - 1;
       if (newLives <= 0) {
@@ -42,6 +42,9 @@ const GamePage = ({ player }) => {
       }
       return newLives;
     });
+
+    // Go to the next node even after a wrong choice
+    renderNode(nextNodeId, renderStoryNode);
   };
 
   return (
@@ -65,8 +68,8 @@ const GamePage = ({ player }) => {
                 key={index}
                 onClick={() =>
                   choice.isWrongChoice
-                    ? handleWrongChoice()
-                    : handleCorrectChoice(choice.nextNode)
+                    ? handleWrongChoice(choice.nextNode) // Handle wrong choice
+                    : handleCorrectChoice(choice.nextNode) // Handle correct choice
                 }
               >
                 {choice.text}

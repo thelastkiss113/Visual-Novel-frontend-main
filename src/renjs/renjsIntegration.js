@@ -22,7 +22,7 @@ const storyData = {
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Explore the kitchen', nextNode: 'kitchen' },
-        { text: 'Explore the pantry', nextNode: 'pantry' },
+        { text: 'Explore the pantry', nextNode: 'pantry', isWrongChoice: true },
         { text: 'Inspect the door', nextNode: 'frontDoor' },
       ],
     },
@@ -59,7 +59,7 @@ const storyData = {
     mysteryCat: {
       text: 'The cat offers a cryptic clue: "Not all exits are doors."',
       background: '/assets/images/mysteryCat.png',
-      sound: '/assets/sounds/clue.mp3',
+      sound: '/assets/sounds/meows.mp3',
       choices: [
         { text: 'Follow the clue', nextNode: 'storageRoom' },
         { text: 'Ignore and head to the hallway', nextNode: 'hauntedHallway' },
@@ -89,7 +89,7 @@ const storyData = {
     window: {
       text: 'You find the window locked. But you see a river in the distance.',
       background: '/assets/images/window.png',
-      sound: '/assets/sounds/escape.mp3',
+      sound: '/assets/sounds/window.mp3',
       choices: [
         { text: 'Return to the storage room', nextNode: 'storageRoom' },
         { text: 'Head to the library', nextNode: 'library' },
@@ -101,7 +101,7 @@ const storyData = {
       sound: '/assets/sounds/front-door.mp3',
       character: '/assets/images/mainCat-flipped.png',
       choices: [
-        { text: 'Try the keypad', nextNode: 'keypad' },
+        { text: 'Try the keypad', nextNode: 'keypad', isWrongChoice: true },
         { text: 'Go back to the kitchen', nextNode: 'kitchen' },
         { text: 'Talk to the cat again', nextNode: 'mysteryCat' },
       ],
@@ -111,7 +111,7 @@ const storyData = {
       background: '/assets/images/keypad.png',
       sound: '/assets/sounds/keypad.mp3',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
+        { text: 'Return to the cafe', nextNode: 'cafe' },
       ],
     },
     backDoor: {
@@ -163,6 +163,7 @@ const storyData = {
       text: 'The water leads you to an exit! Congratulations! You escape the Cat Café!',
       background: '/assets/images/waterExit.png',
       sound: '/assets/sounds/win-game.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Play again', nextNode: 'intro' },
       ],
@@ -180,7 +181,7 @@ const storyData = {
     ghost: {
       text: 'A ghost appears and you lose a life from the scare!',
       background: '/assets/images/ghost.png',
-      sound: '/assets/sounds/ghost-scare.mp3',
+      sound: '/assets/sounds/life-lost.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
@@ -218,7 +219,7 @@ const storyData = {
     escapeComplete: {
       text: 'You cracked the code and escaped the Cat Café!',
       background: '/assets/images/escapeComplete.png',
-      sound: '/assets/sounds/escape.mp3',
+      sound: '/assets/sounds/win-game.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Play again', nextNode: 'intro' },
