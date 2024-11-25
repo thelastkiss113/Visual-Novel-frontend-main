@@ -38,4 +38,3 @@ export const updateProgress = async (playerId, progress) => {
 export const deleteProgress = async (playerId) => {
   await fetch(`${API_BASE_URL}/progress/${playerId}`, { method: 'DELETE' });
 };
-

@@ -11,7 +11,7 @@ const LoadGame = ({ setPlayer }) => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/players'); // Include the full URL
+        const response = await fetch('http://localhost:5000/api/players'); 
         if (!response.ok) {
           throw new Error('Failed to fetch players');
         }

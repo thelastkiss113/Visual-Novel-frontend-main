@@ -2,12 +2,13 @@
 import React from 'react';
 import './styles/StoryNode.css';
 
+// StoryNode component  
 const StoryNode = ({ text, choices, onChoice }) => (
   <div className="story-node">
     <p>{text}</p>
     <div className="choices">
       {choices.map((choice, index) => (
-        <button key={index} onClick={() => onChoice(choice.nextNode)}>
+        <button key={index} onClick={() => onChoice(choice.nextNode)}> 
           {choice.text}
         </button>
       ))}

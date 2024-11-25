@@ -1,12 +1,13 @@
 // frontend/src/pages/SaveGamePage.jsx
-
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Import React and useState hook
 
 const SaveGamePage = ({ player }) => {
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = useState(false); // Manage the saved state
 
+  // Function to handle saving the player's game progress
   const handleSave = async () => {
     try {
+      // Make a PUT request to save the player's progress
       const response = await fetch('http://localhost:5000/api/players/' + player._id, {
         method: 'PUT',
         headers: {
@@ -24,10 +25,10 @@ const SaveGamePage = ({ player }) => {
         throw new Error('Failed to save game');
       }
 
-      setSaved(true);
+      setSaved(true); // Set saved to true after a successful save
       console.log('Game saved successfully!');
     } catch (error) {
-      console.error('Error saving game:', error);
+      console.error('Error saving game:', error); // Log error if the save fails
     }
   };
 
@@ -38,7 +39,11 @@ const SaveGamePage = ({ player }) => {
       <p>Email: {player.email}</p>
       <p>Level: {player.level}</p>
       <p>Lives: {player.lives}</p>
+
+      {/* Button to trigger the save */}
       <button onClick={handleSave}>Save Game</button>
+
+      {/* Show a confirmation message if the game was saved successfully */}
       {saved && <p>Game saved successfully!</p>}
     </div>
   );

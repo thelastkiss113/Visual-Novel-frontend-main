@@ -80,4 +80,3 @@ const GamePage = ({ player }) => {
 };
 
 export default GamePage;
-

@@ -43,7 +43,7 @@ const storyData = {
       sound: '/assets/sounds/life-lost.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe'},
+        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
       
       ],
     },
@@ -53,7 +53,7 @@ const storyData = {
       sound: '/assets/sounds/life-lost.mp3',
       character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe' },
+        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
       ],
     },
     mysteryCat: {
@@ -111,7 +111,7 @@ const storyData = {
       background: '/assets/images/keypad.png',
       sound: '/assets/sounds/keypad.mp3',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe' },
+        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
       ],
     },
     backDoor: {
@@ -171,6 +171,7 @@ const storyData = {
       text: 'You enter a spooky hallway filled with strange shadows.',
       background: '/assets/images/hauntedHallway.png',
       sound: '/assets/sounds/haunted.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Walk down the hallway', nextNode: 'ghost' },
         { text: 'Return to the storage room', nextNode: 'storageRoom' },
@@ -180,9 +181,9 @@ const storyData = {
       text: 'A ghost appears and you lose a life from the scare!',
       background: '/assets/images/ghost.png',
       sound: '/assets/sounds/ghost-scare.mp3',
-      character: '/assets/images/mainCat-flipped.png',
+      character: '/assets/images/mainCat.png',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe' },
+        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
       ],
     },
     library: {
@@ -208,6 +209,7 @@ const storyData = {
       text: 'You have reached the final door, but it requires a code. The question is, do you know it?',
       background: '/assets/images/finalDoor.png',
       sound: '/assets/sounds/final-choice.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Enter the code you found', nextNode: 'escapeComplete' },
         { text: 'Try something random', nextNode: 'lostLife' },
@@ -217,6 +219,7 @@ const storyData = {
       text: 'You cracked the code and escaped the Cat Café!',
       background: '/assets/images/escapeComplete.png',
       sound: '/assets/sounds/escape.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Play again', nextNode: 'intro' },
       ],
@@ -226,7 +229,7 @@ const storyData = {
       background: '/assets/images/lostLife.png',
       sound: '/assets/sounds/life-lost.mp3',
       choices: [
-        { text: 'Return to the cafe', nextNode: 'cafe' },
+        { text: 'Return to the cafe', nextNode: 'cafe', isWrongChoice: true },
       ],
     },
     bar: {
@@ -243,6 +246,7 @@ const storyData = {
       text: 'The Barista is a friendly person. Will you ask for a drink?',
       background: '/assets/images/barista.png',
       sound: '/assets/sounds/barista.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Ask for a drink', nextNode: 'barDrink' },
         { text: 'Go back to the kitchen', nextNode: 'kitchen' },
@@ -253,7 +257,7 @@ const storyData = {
       background: '/assets/images/barDrink.png',
       sound: '/assets/sounds/drink.mp3',
       choices: [
-        { text: 'Try again', nextNode: 'cafe' },,
+        { text: 'Try again', nextNode: 'cafe', isWrongChoice: true },
       ],
     },
   },

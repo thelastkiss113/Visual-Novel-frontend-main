@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const DeletePlayer = ({ player, setPlayer }) => {
-  const [confirmation, setConfirmation] = useState(false); // Flag for confirmation
+  const [confirmation, setConfirmation] = useState(false); // Confirmation state 
   const navigate = useNavigate(); // For navigation after deletion
 
   useEffect(() => {
