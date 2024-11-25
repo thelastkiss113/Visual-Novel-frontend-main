@@ -72,7 +72,7 @@ const storyData = {
       sound: '/assets/sounds/cat-riddle.mp3',
       choices: [
         { text: 'Head to the library', nextNode: 'library' },
-        { text: 'Explore the hallway', nextNode: 'hallway' },
+        { text: 'Explore the hallway', nextNode: 'hauntedHallway' },
       ],
     },
     storageRoom: {
@@ -154,6 +154,7 @@ const storyData = {
       text: 'The passage leads to an underground cave. You hear the faint sound of running water.',
       background: '/assets/images/undergroundCave.png',
       sound: '/assets/sounds/river.mp3',
+      character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Follow the water', nextNode: 'waterExit' },
         { text: 'Turn back', nextNode: 'intro' },
@@ -175,6 +176,7 @@ const storyData = {
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Walk down the hallway', nextNode: 'ghost' },
+        {text: 'Walk to the left', nextNode: 'finalChoice'},
         { text: 'Return to the storage room', nextNode: 'storageRoom' },
       ],
     },
@@ -194,6 +196,7 @@ const storyData = {
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Read a book on escaping', nextNode: 'escapeBook' },
+        { text: 'Check out the hallway', nextNode: 'hauntedHallway' },
         { text: 'Ignore the books and leave', nextNode: 'intro' },
       ],
     },
@@ -203,6 +206,7 @@ const storyData = {
       sound: '/assets/sounds/escape-book.mp3',
       choices: [
         { text: 'Try the code', nextNode: 'frontDoor' },
+        {text: 'Look for other exits', nextNode: 'hauntedHallway'},
         { text: 'Return to the kitchen', nextNode: 'kitchen' },
       ],
     },
@@ -213,6 +217,7 @@ const storyData = {
       character: '/assets/images/mainCat.png',
       choices: [
         { text: 'Enter the code you found', nextNode: 'escapeComplete' },
+        { text: 'Try to find the code', nextNode: 'library' },
         { text: 'Try something random', nextNode: 'lostLife' },
       ],
     },
